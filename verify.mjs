@@ -1,22 +1,17 @@
 import { readFileSync } from 'fs';
-import { dirname, join } from 'path';
+import { join, dirname } from 'path';
 import { fileURLToPath } from 'url';
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
 try {
-    const readmePath = join(__dirname, 'README.md');
-    const readme = readFileSync(readmePath, 'utf8');
-    
-    // Check for the universal signal marker we injected
-    if (readme.includes('[Signal:')) {
-        console.log("✅ Stationary State Verified.");
-        process.exit(0);
-    } else {
-        console.error("❌ Invariant Drift: Signal missing in README.");
-        process.exit(1);
+    const readme = readFileSync(join(__dirname, 'README.md'), 'utf8');
+    if (!readme.includes('[Signal: LEAST_ENTROPY]')) {
+        throw new Error("Judicial Signal Missing.");
     }
+    console.log("⚖️ Judicial-Gold: Arbiter Invariant Verified.");
+    process.exit(0);
 } catch (e) {
-    console.error(`❌ Execution Error: ${e.message}`);
+    console.error(`❌ Judicial-Gold: Audit Failed - ${e.message}`);
     process.exit(1);
 }
