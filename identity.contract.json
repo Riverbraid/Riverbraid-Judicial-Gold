@@ -1,0 +1,7 @@
+{
+  "contract_class": "IDENTITY_CONTRACT",
+  "version": "1.1.0",
+  "repo_name": "Riverbraid-Judicial-Gold",
+  "repo_role": "POLICY_GATE",
+  "governed_files": ["src/validate-rules.mjs", "src/test-judicial.mjs"]
+}
