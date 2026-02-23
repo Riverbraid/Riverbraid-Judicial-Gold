@@ -1,3 +1,7 @@
+# Riverbraid Gold Cluster
+[ARCHITECTURE.md Spec](https://github.com/Riverbraid/Riverbraid-Golds/blob/main/ARCHITECTURE.md)
+---
+
 # Riverbraid Gold Cluster Repository
 [ARCHITECTURE.md Spec](https://github.com/Riverbraid/Riverbraid-Golds/blob/main/ARCHITECTURE.md)
 ---
