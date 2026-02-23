@@ -1,3 +1,1 @@
-# Security Policy
-
-Fail-Closed architecture. Report vulnerabilities via encrypted channels.
+# Security Policy\n\nFail-Closed architecture. Report vulnerabilities via encrypted channels.

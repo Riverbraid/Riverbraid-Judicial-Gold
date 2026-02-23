@@ -1,4 +1,1 @@
-# Contributing
-
-1. Maintain Stationarity.
-2. Pass internal verify scripts.
+# Contributing\n\n1. Maintain Stationarity.\n2. No wall-clocks.\n3. Pass verify scripts.
