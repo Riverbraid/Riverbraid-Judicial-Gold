@@ -7,6 +7,7 @@
     "npm": "10.2.4"
   },
   "scripts": {
-    "audit": "node src/judge.mjs"
+    "audit": "node src/judge.mjs",
+    "test": "node verify.mjs"
   }
 }
