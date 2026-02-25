@@ -1,1 +1,2 @@
-# Security Policy\n\nFail-Closed architecture. Report vulnerabilities via encrypted channels.
+# Security Policy
+The Riverbraid Cluster operates on Mechanical Honesty. Please report vulnerabilities via GitHub Security Advisories.
