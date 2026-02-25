@@ -1,0 +1,30 @@
+name: "Judicial Coherence Pulse"
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  verify-judicial-law:
+    runs-on: ubuntu-latest
+    steps:
+      - name: "Checkout Judicial Source"
+        uses: actions/checkout@v4
+
+      - name: "Fetch Institutional Manifest"
+        run: |
+          curl -s https://raw.githubusercontent.com/Riverbraid/Riverbraid-Golds/main/TRUTH.md -o TRUTH.md
+
+      - name: "Verify Judicial Invariant"
+        run: |
+          LOCAL_HASH=$(find . -type f -not -path '*/.*' -not -name 'TRUTH.md' | sort | xargs sha256sum | sha256sum | awk '{print $1}')
+          EXPECTED_HASH=$(grep "| \*\*Judicial-Gold\*\*" TRUTH.md | awk -F'|' '{print $3}' | xargs)
+          
+          echo "Local Judicial Hash: $LOCAL_HASH"
+          echo "Institutional Hash: $EXPECTED_HASH"
+          
+          if [ "$LOCAL_HASH" != "$EXPECTED_HASH" ]; then
+            echo "::error::JUDICIAL DISTORTION. Law does not match Institutional Manifest."
+            exit 1
+          fi
+          echo "Judicial integrity confirmed."
