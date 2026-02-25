@@ -1,9 +1,7 @@
 {
-  "name": "Riverbraid-Judicial-Gold",
-  "role": "Governance Layer – Fail-Closed Gate",
-  "signal": "LEAST_ENTROPY",
-  "version": "1.1",
-  "default_state": "DENY",
-  "scaling_principle": "Coherence over raw compute",
-  "entropy_threshold": "0.0"
+  "contract_class": "IDENTITY_CONTRACT",
+  "version": "1.1.0",
+  "repo_name": "Riverbraid-Judicial-Gold",
+  "repo_role": "REFINED_PETAL",
+  "invariants": { "entropy_ban": true, "ascii_only": true }
 }
