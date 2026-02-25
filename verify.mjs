@@ -1,17 +1,37 @@
-import { readFileSync } from 'fs';
-import { join, dirname } from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
 
-const __dirname = dirname(fileURLToPath(import.meta.url));
+const fatal = (msg) => {
+  console.error(`[FAIL-CLOSED] ${msg}`);
+  process.exit(1);
+};
 
 try {
-    const readme = readFileSync(join(__dirname, 'README.md'), 'utf8');
-    if (!readme.includes('[Signal: LEAST_ENTROPY]')) {
-        throw new Error("Judicial Signal Missing.");
+  const contract = JSON.parse(fs.readFileSync('./identity.contract.json', 'utf8'));
+  console.log(`[VERIFY] Auditing Petal: ${contract.name} v${contract.version}`);
+
+    fatal('Missing governed_files array in identity.contract.json');
+  }
+
+  for (const file of contract.governed_files) {
+      fatal(`Governed file missing: ${file}`);
     }
-    console.log("⚖️ Judicial-Gold: Arbiter Invariant Verified.");
-    process.exit(0);
-} catch (e) {
-    console.error(`❌ Judicial-Gold: Audit Failed - ${e.message}`);
-    process.exit(1);
+    console.log(`[OK] ${file} present.`);
+  }
+
+  // Check for the entropy ban if specified in contract
+  if (contract.invariants?.entropy_ban) {
+    // Check key files for Date.now() or dynamic timestamps
+    const checkFiles = ['index.js', 'verify.mjs'].filter(f => fs.existsSync(f));
+    for (const f of checkFiles) {
+      const content = fs.readFileSync(f, 'utf8');
+      if (content.includes('Date.now()') || content.includes('new Date()')) {
+        fatal(`Entropy violation in ${f}: Dynamic time detected.`);
+      }
+    }
+  }
+
+  console.log('[STATIONARY] Signal verified. 10/10 Readiness.');
+} catch (err) {
+  fatal(`Structural failure: ${err.message}`);
 }
