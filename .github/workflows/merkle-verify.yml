@@ -17,7 +17,7 @@ jobs:
 
       - name: "Verify Judicial Invariant"
         run: |
-          LOCAL_HASH=$(find . -type f -not -path '*/.*' -not -name 'TRUTH.md' | sort | xargs sha256sum | sha256sum | awk '{print $1}')
+          LOCAL_HASH=$(find . -type f -not -path '*/.*' -not -path './.github/*' -not -name 'TRUTH.md' | sort | xargs sha256sum | sha256sum | awk '{print $1}')
           EXPECTED_HASH=$(grep "| \*\*Judicial-Gold\*\*" TRUTH.md | awk -F'|' '{print $3}' | xargs)
           
           echo "Local Judicial Hash: $LOCAL_HASH"
