@@ -1,30 +1,20 @@
-name: "Judicial Coherence Pulse"
-
-on:
-  push:
-    branches: [ main ]
-
+name: Merkle Verification
+on: [push]
 jobs:
-  verify-judicial-law:
+  verify:
     runs-on: ubuntu-latest
     steps:
-      - name: "Checkout Judicial Source"
-        uses: actions/checkout@v4
-
-      - name: "Fetch Institutional Manifest"
+      - uses: actions/checkout@v4
+      - name: Fetch Truth
+        run: curl -s https://raw.githubusercontent.com/Riverbraid/Riverbraid-Golds/main/TRUTH.md -o TRUTH.md
+      - name: Verify
         run: |
-          curl -s https://raw.githubusercontent.com/Riverbraid/Riverbraid-Golds/main/TRUTH.md -o TRUTH.md
-
-      - name: "Verify Judicial Invariant"
-        run: |
-          LOCAL_HASH=$(find . -type f -not -path '*/.*' -not -path './.github/*' -not -name 'TRUTH.md' | sort | xargs sha256sum | sha256sum | awk '{print $1}')
-          EXPECTED_HASH=$(grep "Judicial-Gold" TRUTH.md | grep -oE "[0-9a-f]{64}")
-          
-          echo "Local Judicial Hash: $LOCAL_HASH"
-          echo "Institutional Hash: $EXPECTED_HASH"
-          
-          if [ "$LOCAL_HASH" != "$EXPECTED_HASH" ]; then
-            echo "::error::JUDICIAL DISTORTION. Law does not match Institutional Manifest."
+          CURRENT_HASH=$(find . -type f -not -path '*/.*' -not -path './node_modules/*' -exec sha256sum {} + | sort | sha256sum | awk '{print $1}')
+          EXPECTED_HASH=$(grep "Judicial-Gold" TRUTH.md | grep -oE "[0-9a-f]{64}" | head -n 1)
+          echo "Comparing Current: $CURRENT_HASH"
+          echo "Against Manifest: $EXPECTED_HASH"
+          if [ "$CURRENT_HASH" != "$EXPECTED_HASH" ]; then
+            echo "FREQUENCY DISTORTION DETECTED"
             exit 1
           fi
-          echo "Judicial integrity confirmed."
+          echo "COHERENCE ACHIEVED"
