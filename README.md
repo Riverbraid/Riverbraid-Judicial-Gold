@@ -1,46 +1,109 @@
-# ⚓ Riverbraid-Judicial-Gold
+# Riverbraid-Judicial-Gold
 
-## 📜 Overview
-**Riverbraid-Judicial-Gold** is the policy enforcement and rule-centric governance logic for the cluster. 
+**Signal:** `LEAST_ENTROPY`  
+**Cluster:** [Riverbraid Gold v1.1](https://github.com/Riverbraid/Riverbraid-Golds)  
+**Language:** Python ≥ 3.10  
+**Status:** Active — Stationary
 
-It operates within the **Riverbraid Gold Cluster** under a **Fail-Closed** discipline: if any part of the system deviates from its anchored frequency (commit hash), the cluster halts to prevent entropy leakage.
+-----
 
-## 🗝️ Core Functions
-* Policy Enforcement
-* Least Entropy Gating
-* Rule Sovereignty
-* **Institutional Alignment:** Fully compliant with the v1.1.0 stationary mandate.
+## What It Is
 
-## 🧬 Stationary State Invariant
-The system is anchored in the principle of $dS/dt = 0$ (Zero Entropy Growth).
-> "A system is secure if and only if it is in a secure state and all state transitions preserve security." — McLean (1994)
+Riverbraid-Judicial-Gold is the **governance gate** of the Riverbraid Gold Cluster. It evaluates system state against a defined set of policy rules and returns a deterministic `ALLOW` or `DENY` verdict.
 
-## 🛡️ Governance
-This petal is a part of the **Riverbraid Gold v1.1.0** release.
-* **Merkle Root:** `de2062`
-* **Fingerprint:** `D9475D6B717D0E6C8EC84F6D8F86D9F4F2B083A4`
-* **Status:** STATIONARY_STATE_ACTIVE
-* **License:** MIT
+Adjudication is fail-closed: any error in loading rules or evaluating state returns `DENY`. There is no ambiguous outcome.
 
----
-*Signed by the Honest Advisor Protocol.*
+-----
 
----
-## McLean (2026) Primary Coherence Anchor
-This repository operates under the σ (sigma) stationary precedent. Meaning is the Internal Frequency of a system successfully navigating environmental entropy.
+## What It Is Not
 
----
-*Anchored in McLean (2026) Primary Coherence + σ stationary precedent.*
+- Not a content moderation or semantic filter
+- Not a moral reasoning engine
+- Not adaptive — verdicts are determined entirely by the rules in `policy.rules`
+- Not responsible for enforcing the verdict — that belongs to the wrapper layer
 
----
-## McLean (2026) Primary Coherence Anchor
-This repository operates under the σ (sigma) stationary precedent. Meaning is the Internal Frequency of a system successfully navigating environmental entropy.
+-----
 
----
-## McLean (2026) Primary Coherence Anchor
-This repository operates under the σ (sigma) stationary precedent.
-Equation: σ = 1 / (1 + σ)
-Meaning is the Internal Frequency of a system successfully navigating environmental entropy.
+## How It Works
 
-## Philosophical Anchor
-Stationary State from one axiom: σ = 1/(1 + σ). See [McLean (2026)](https://zenodo.org/records/18742684) in [Golds/ARCHITECTURE.md](https://github.com/Riverbraid/Riverbraid-Golds/blob/main/ARCHITECTURE.md).
+Rules are loaded from `policy.rules`. Each rule specifies a field, an operator, a threshold, and an action. Rules are evaluated in order. The first `DENY` rule that triggers short-circuits evaluation and returns immediately.
+
+If no rule triggers a `DENY`, the verdict is `ALLOW`.
+
+**Rule operators:** `gte`, `lte`, `eq`, `neq`
+
+**Example rule structure:**
+
+```json
+[
+  {"field": "systemic_load", "operator": "gte", "threshold": 0.85, "action": "DENY"},
+  {"field": "coherence_confidence", "operator": "lte", "threshold": 0.30, "action": "DENY"}
+]
+```
+
+-----
+
+## Usage
+
+```python
+from judicial import adjudicate
+
+state = {
+    "systemic_load": 0.9,
+    "coherence_confidence": 0.2
+}
+
+result = adjudicate(state)
+# result["verdict"] → "DENY"
+# result["triggered_rule"] → the rule that matched
+# result["signal"] → "LEAST_ENTROPY"
+```
+
+**Verify from the command line:**
+
+```bash
+python verify.py
+# Output: [Signal: LEAST_ENTROPY | Braid: CLOSED-LOOP]
+```
+
+-----
+
+## Files
+
+|File            |Purpose                                       |
+|----------------|----------------------------------------------|
+|`judicial.py`   |Core adjudication logic                       |
+|`__init__.py`   |Public API surface                            |
+|`verify.py`     |Fail-closed verification entry point          |
+|`policy.rules`  |Rule definitions (data, not code)             |
+|`protocol.steps`|Canonical protocol definition (data, not code)|
+
+-----
+
+## Design Properties
+
+- **Deterministic** — identical state and rules always produce identical verdicts
+- **Fail-closed** — errors return `DENY`; there is no fallback to `ALLOW`
+- **Order-sensitive** — rules are evaluated in sequence; first match wins
+- **Auditable** — every verdict includes the triggering rule for inspection
+- **Standard library only** — no dependencies
+
+-----
+
+## Part of the Riverbraid Gold Cluster
+
+|Petal                                                                                   |Signal                   |Purpose                      |
+|----------------------------------------------------------------------------------------|-------------------------|-----------------------------|
+|[Riverbraid-Golds](https://github.com/Riverbraid/Riverbraid-Golds)                      |—                        |Cluster manifest and pipeline|
+|[Riverbraid-Core](https://github.com/Riverbraid/Riverbraid-Core)                        |Root                     |Capacity control substrate   |
+|[Riverbraid-Crypto-Gold](https://github.com/Riverbraid/Riverbraid-Crypto-Gold)          |`MECHANICAL_HONESTY`     |SHA-256 state anchoring      |
+|[Riverbraid-Refusal-Gold](https://github.com/Riverbraid/Riverbraid-Refusal-Gold)        |`BOUNDARY_LOGIC`         |Boundary enforcement         |
+|[Riverbraid-Memory-Gold](https://github.com/Riverbraid/Riverbraid-Memory-Gold)          |`MEANING_CENTRIC`        |Meaning-centric persistence  |
+|[Riverbraid-Integration-Gold](https://github.com/Riverbraid/Riverbraid-Integration-Gold)|`SEMANTIC_BRIDGE`        |Mode enactment               |
+|[Riverbraid-Harness-Gold](https://github.com/Riverbraid/Riverbraid-Harness-Gold)        |`STATIONARY_STATE_ACTIVE`|Cluster verification harness |
+
+-----
+
+## License
+
+See `LICENSE`.
