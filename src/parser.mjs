@@ -185,7 +185,7 @@ function peg$parse(input, options) {
     return {
       principle: p,
       reason: r,
-      timestamp: Date.now()
+      timestamp: 0
     };
   }
   function peg$f1() {    return text();  }

@@ -1,15 +1,11 @@
-start = directive
+start = expression
 
-directive = p:principle _ "BECAUSE" _ r:reason {
-  return {
-    principle: p,
-    reason: r,
-    timestamp: Date.now()
-  };
+expression = left:term _ "+" _ right:expression {
+  return { type: "addition", left, right };
+} / term
+
+term = [0-9]+ {
+  return { type: "literal", value: parseInt(text(), 10) };
 }
-
-principle = "MECHANICAL_HONESTY" / "COHERENCE" / "FAIL_CLOSED" / "STATIONARY_STATE"
-
-reason = [A-Z0-9_]+ { return text(); }
 
 _ "whitespace" = [ \t\n\r]*

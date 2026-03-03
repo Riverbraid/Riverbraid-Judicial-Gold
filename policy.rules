@@ -1,5 +1,1 @@
-# Riverbraid Judicial Policy V1.1
-# Principle: Reject most things instead of learning everything.
-
-ALLOW internal
-DENY .*
+[]
