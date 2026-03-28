@@ -1,4 +1,4 @@
-// Riverbraid-Judicial-Gold – Fail-Closed Gate
+// Riverbraid-Judicial-Gold  Fail-Closed Gate
 // 7-bit ASCII only.
 
 export const evaluateSignal = (signal, rules) => {

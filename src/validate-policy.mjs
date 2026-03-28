@@ -7,7 +7,7 @@ const ruleset = fs.readFileSync('/workspaces/Riverbraid-Judicial-Gold/policy.rul
 
 try {
   const result = parser.parse(ruleset);
-  console.log("✅ JUDICIAL_GRAMMAR_VALIDATION: PASS");
+  console.log(" JUDICIAL_GRAMMAR_VALIDATION: PASS");
   console.log(`Parsed ${result.filter(r => r?.type === 'RULE').length} rules.`);
 } catch (e) {
   console.error(`FATAL: Judicial Grammar Violation at line ${e.location.start.line}, column ${e.location.start.column}`);

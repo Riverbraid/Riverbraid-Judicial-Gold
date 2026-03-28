@@ -6,7 +6,7 @@ import { parse } from './parser.mjs';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 function fatal(msg) {
-  console.error(`⚖️ FATAL:JUDICIAL_GATE:${msg}`);
+  console.error(` FATAL:JUDICIAL_GATE:${msg}`);
   process.exit(1);
 }
 
@@ -19,7 +19,7 @@ try {
     
     for (const line of lines) {
         const result = parse(line.trim());
-        console.log(`⚖️ JUDGMENT_VALIDATED: ${result.principle}`);
+        console.log(` JUDGMENT_VALIDATED: ${result.principle}`);
     }
 
     console.log('PASS:JUDICIAL_INVARIANTS');
