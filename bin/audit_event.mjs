@@ -1,11 +1,16 @@
-import { readFileSync, writeFileSync, appendFileSync } from 'fs';
+import { appendFileSync, mkdirSync } from 'fs';
 import { execSync } from 'child_process';
+import { dirname, join } from 'path';
+import { fileURLToPath } from 'url';
 
-const LOG_PATH = './logs/audit.log';
+const __dirname = dirname(fileURLToPath(import.meta.url));
+const LOG_PATH = join(__dirname, '../logs/audit.log');
 
 const audit = (actionName, result) => {
   try {
-    // 1. Get current Cognition state for the record
+    // Ensure logs directory exists at runtime
+    mkdirSync(dirname(LOG_PATH), { recursive: true });
+
     const rawCognition = execSync('node /workspaces/Riverbraid-Cognition/bin/evaluate_coherence.mjs').toString();
     const cognition = JSON.parse(rawCognition);
 
@@ -15,17 +20,17 @@ const audit = (actionName, result) => {
       result: result,
       coherence: cognition.signal,
       frequency: cognition.frequency,
-      anchor: "adef13" // The expected stationary invariant
+      anchor: "adef13"
     };
 
     appendFileSync(LOG_PATH, JSON.stringify(logEntry) + '\n');
-    console.log("JUDICIAL: Event seated in audit log.");
+    console.log("JUDICIAL: Event seated in absolute audit log.");
   } catch (e) {
-    console.error("JUDICIAL_FAILURE: Could not record event state.");
+    console.error("JUDICIAL_FAILURE: Check permissions or pathing.");
+    console.error(e.message);
   }
 };
 
-// Handle CLI input for auditing
 const [,, action, status] = process.argv;
 if (action && status) {
   audit(action, status);
