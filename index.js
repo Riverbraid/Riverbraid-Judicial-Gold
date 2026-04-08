@@ -1,38 +1,25 @@
-/**
- * Riverbraid-Judicial-Gold: index.js
- * Fail-Closed Predicate Governance (v1.3.0)
- */
+const fs = require('fs');
+const config = JSON.parse(fs.readFileSync('./constitution.threshold.json', 'utf8'));
 
-export const RB_PETAL_ID = 'Riverbraid-Judicial-Gold';
+const evaluate = (proposalA, proposalB, state) => {
+  const { deadlock_count, step } = state;
+  const tiers = config.deadlock_resolution.tiers;
+  
+  // Tier Selection Logic
+  let activeTier = tiers[0];
+  if (deadlock_count >= tiers[2].deadlock_limit) activeTier = tiers[2];
+  else if (deadlock_count >= tiers[1].deadlock_limit) activeTier = tiers[1];
 
-export function evaluate(input, predicates) {
-  if (!Array.isArray(predicates) || predicates.length === 0) {
-    return { passed: false, failures: ['NO_PREDICATES: at least one predicate required'] };
+  if (activeTier.level === 1) return "HALT_AND_REQUEST_TOKEN";
+  
+  if (activeTier.level === 2) {
+    // Weighted deterministic choice based on hash if history is neutral
+    return (BigInt('0x' + proposalA.id) > BigInt('0x' + proposalB.id)) ? "ALLOW_A" : "ALLOW_B";
   }
-  const failures = [];
-  for (const predicate of predicates) {
-    if (typeof predicate.test !== 'function') {
-      failures.push(`INVALID_PREDICATE: ${predicate.name ?? 'unnamed'} has no test function`);
-      continue;
-    }
-    try {
-      const result = predicate.test(input);
-      if (result !== true) failures.push(`PREDICATE_FAILED: ${predicate.name ?? 'unnamed'}`);
-    } catch (err) {
-      failures.push(`PREDICATE_ERROR: ${predicate.name ?? 'unnamed'}: ${err.message}`);
-    }
-  }
-  return { passed: failures.length === 0, failures };
-}
 
-export function gate(input, predicates) {
-  const result = evaluate(input, predicates);
-  if (!result.passed) {
-    throw new Error(`JUDICIAL_GATE_CLOSED: ${result.failures.join('; ')}`);
+  if (activeTier.level === 3) {
+    // Sequence-fixed deterministic apply
+    return "SEQUENCE_ATOMIC";
   }
-  return true;
-}
-
-export function getStatus() {
-  return { status: 'STATIONARY', petal: RB_PETAL_ID };
-}
+};
+module.exports = { evaluate };
