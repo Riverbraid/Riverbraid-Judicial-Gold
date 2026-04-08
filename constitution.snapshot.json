@@ -1,3 +1,137 @@
-{
-  "sha256": "5ca495db6924643d5307ed267c1318b5624d9681b58f8d7da007a7504a0939d4"
-}
+[
+  {
+    "file": ".anchor"
+  },
+  {
+    "file": ".gitattributes"
+  },
+  {
+    "file": ".github/workflows/integrity.yml"
+  },
+  {
+    "file": ".github/workflows/merkle-verify.yml"
+  },
+  {
+    "file": ".gitignore"
+  },
+  {
+    "file": ".nvmrc"
+  },
+  {
+    "file": ".stationary_state"
+  },
+  {
+    "file": "ARCHITECTURE.md"
+  },
+  {
+    "file": "BUILD-MANIFEST-v1.1.md"
+  },
+  {
+    "file": "CODE_OF_CONDUCT.md"
+  },
+  {
+    "file": "CONTRIBUTING.md"
+  },
+  {
+    "file": "LICENSE"
+  },
+  {
+    "file": "README.md"
+  },
+  {
+    "file": "SECURITY.md"
+  },
+  {
+    "file": "SOVEREIGN-ENVIRONMENT.md"
+  },
+  {
+    "file": "SPEC.md"
+  },
+  {
+    "file": "TRUTH.md"
+  },
+  {
+    "file": "__init__.py"
+  },
+  {
+    "file": "audit-swarm.cjs"
+  },
+  {
+    "file": "bin/audit_event.mjs"
+  },
+  {
+    "file": "bin/gate.mjs"
+  },
+  {
+    "file": "bin/heartbeat.mjs"
+  },
+  {
+    "file": "bin/run-vectors.cjs"
+  },
+  {
+    "file": "constitution.snapshot.json.asc"
+  },
+  {
+    "file": "grammar.pegjs"
+  },
+  {
+    "file": "index.js"
+  },
+  {
+    "file": "judicial-policy.rules"
+  },
+  {
+    "file": "judicial.py"
+  },
+  {
+    "file": "logs/audit.log"
+  },
+  {
+    "file": "policy.rules"
+  },
+  {
+    "file": "policy_test.rules"
+  },
+  {
+    "file": "protocol.steps"
+  },
+  {
+    "file": "run-vectors.cjs"
+  },
+  {
+    "file": "src/judge.mjs"
+  },
+  {
+    "file": "src/parser.mjs"
+  },
+  {
+    "file": "src/policy.pegjs"
+  },
+  {
+    "file": "src/test-judicial.mjs"
+  },
+  {
+    "file": "src/validate-policy.mjs"
+  },
+  {
+    "file": "src/validate-rules.mjs"
+  },
+  {
+    "file": "src/verify-judgment.mjs"
+  },
+  {
+    "file": "swarm_anchor.txt"
+  },
+  {
+    "file": "tests/.keep"
+  },
+  {
+    "file": "types/index.d.ts"
+  },
+  {
+    "file": "verify.mjs"
+  },
+  {
+    "file": "verify.py"
+  }
+]
