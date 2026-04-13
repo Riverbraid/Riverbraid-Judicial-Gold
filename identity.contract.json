@@ -1,7 +1,9 @@
 {
-  "contract_class": "riverbraid-reference",
-  "version": "1.3.0",
-  "repo_name": "Riverbraid-Judicial-Gold",
-  "repo_role": "fail-closed-predicate-governance",
-  "governed_files": ["index.js", "verify.mjs", "identity.contract.json", "package.json"]
+  "petal": "judicial-gold",
+  "version": "1.5.0",
+  "signal": "LEAST_ENTROPY",
+  "braid": "CLOSED-LOOP",
+  "invariant": "SOVEREIGN_ARBITER",
+  "merkle_root": "de2062",
+  "forbids": ["Date", "Math.random", "process.hrtime"]
 }
