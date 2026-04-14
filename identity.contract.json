@@ -1,9 +1,0 @@
-{
-  "petal": "judicial-gold",
-  "version": "1.5.0",
-  "signal": "LEAST_ENTROPY",
-  "braid": "CLOSED-LOOP",
-  "invariant": "SOVEREIGN_ARBITER",
-  "merkle_root": "de2062",
-  "forbids": ["Date", "Math.random", "process.hrtime"]
-}

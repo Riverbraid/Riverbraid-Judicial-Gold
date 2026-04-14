@@ -1,2 +1,0 @@
-{"timestamp":"2026-04-07T21:40:00.093Z","action":"SWARM_UPDATE_DEPLOY","result":"SUCCESS","coherence":"STEADY","frequency":1,"anchor":"adef13"}
-{"timestamp":"2026-04-07T21:40:00.865Z","action":"SWARM_UPDATE_DEPLOY","result":"REFUSED","coherence":"DISTORTED","frequency":0,"anchor":"adef13"}
