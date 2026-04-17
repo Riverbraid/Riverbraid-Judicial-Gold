@@ -1,7 +1,41 @@
 {
-  "constitution.snapshot.json": "aef82eecbe77808e115479a9173fbbc0622651725b0e3b896c174b8bbd00eb84",
-  "constitution.threshold.json": "6bd1b1e2adfadaa56923ffadfe2fa3a68071b69461ba783a1d718db97e1c5312",
-  "current_state.tmp": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
-  "package.json": "cd2660961f29950429ce4e2b5aaa6cc952b3933af2c40183d6678510ee5c69a3",
-  "run-vectors.cjs": "1acb0fc35fd2c22c1c07b3f33564edc529a3a9b725f06988721316c2cad12806"
+  "version": "1.5.0",
+  "merkle_root": "6fa1ba633e6f0f9cebc3f4cfcae1462ca2951aae4e921a72b633eaed2e03797a",
+  "files": [
+    {
+      "path": ".gitattributes",
+      "sha256": "daf0f369b25356b2217989eebc4dad24f6681376a07e1a6ac2a8799a13b02bc6",
+      "leaf": "60c255621a965ddd35fecaccd4cf07b877e73287f6598867373259d17cbf8a8f"
+    },
+    {
+      "path": ".stationary-seal",
+      "sha256": "df48de2fb69bb42f3fe91e56141328d2bcf6930ee35bdb15d9d3ebe6f8d5b04e",
+      "leaf": "d4e6e8c854bea2882873c14113aad59b837bbf4cc3e86b2e2302a4b1c79c7056"
+    },
+    {
+      "path": "constitution.threshold.json",
+      "sha256": "6bd1b1e2adfadaa56923ffadfe2fa3a68071b69461ba783a1d718db97e1c5312",
+      "leaf": "5e958c9932578162ea25063bb0bd99e4d8f8173249953859b6ef3951cfa557de"
+    },
+    {
+      "path": "package.json",
+      "sha256": "ac547fbe8d678c4e64a0aa6453f998d2204867ea2e0d423959fbaf14a0cf78af",
+      "leaf": "66060653c62d80ff6a240933fc2e7f8bc1b633083a12fa104ea5a7fe029f7b31"
+    },
+    {
+      "path": "README.md",
+      "sha256": "f20d04d5eeb6dd6942ab55ae9f354e3674c90d4abe173244ca47282a3fa3f940",
+      "leaf": "cc79753a59081a33f79619f20270e9de50fe4a13a11d5014cbf6c841bdcbb234"
+    },
+    {
+      "path": "run-vectors.cjs",
+      "sha256": "dacac55fa4846267c962d0e5a46d2ba3d81a40de7cd544cd25751407e788c818",
+      "leaf": "e448a8e65fd67fa0cbdbd24c67ce708edbf83bbd817e1ce9a5912f874e6e0458"
+    },
+    {
+      "path": "TRUTH.SEAL",
+      "sha256": "4b626d7fa5a95d25b0653b68ae486c47f7499482cff14dfefa8ae6abcc07f17a",
+      "leaf": "03b7c0f5e4a764c260615b87a8e72ba9380c75548b19aa5cf8c3f1007d567139"
+    }
+  ]
 }
