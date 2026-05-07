@@ -8,6 +8,6 @@
   "status": "VERIFIED",
   "result": true,
   "expected_result": true,
-  "canonical_signal": "judicial:RULE_MET",
-  "canonical_reason": "Claim contains required token"
+  "canonical_signal": "judicial-gold:STATIONARY",
+  "canonical_reason": "Stationary fields match declared petal identity"
 }

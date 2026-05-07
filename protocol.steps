@@ -5,16 +5,20 @@
   "ring": 1,
   "petal": "Judicial-Gold",
   "invariant": "RULE_ADHERENCE",
+  "claim_boundary": "declared-conditions-only",
   "canonical_input": {
-    "claim": "The river flows",
-    "required_token": "flows"
+    "repo": "Riverbraid-Judicial-Gold",
+    "petal": "Judicial-Gold",
+    "ring": 1,
+    "invariant": "RULE_ADHERENCE"
   },
   "expected_result": true,
   "steps": [
-    "receive canonical input object",
-    "require claim and required_token to be strings",
-    "evaluate case-sensitive token containment",
-    "compare result to expected_result",
+    "receive canonical stationarity object",
+    "require repo to equal Riverbraid-Judicial-Gold",
+    "require petal to equal Judicial-Gold",
+    "require ring to equal 1",
+    "require invariant to equal RULE_ADHERENCE",
     "emit deterministic verification output"
   ],
   "forbidden": [

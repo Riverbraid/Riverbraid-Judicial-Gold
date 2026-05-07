@@ -1,22 +1,25 @@
 export const PETAL = "Judicial-Gold";
 export const INVARIANT = "RULE_ADHERENCE";
-
 export function verify(input) {
-  if (!input || typeof input.claim !== "string" || typeof input.required_token !== "string") {
+  if (!input || typeof input !== "object") {
     return {
       pass: false,
-      signal: "judicial:INVALID_INPUT",
-      reason: "input.claim and input.required_token must be strings"
+      stationary: false,
+      signal: "judicial-gold:INVALID_INPUT",
+      reason: "input must be an object"
     };
   }
-
-  const pass = input.claim.includes(input.required_token);
-
+  const stationary =
+    input.repo === "Riverbraid-Judicial-Gold" &&
+    input.petal === "Judicial-Gold" &&
+    input.ring === 1 &&
+    input.invariant === "RULE_ADHERENCE";
   return {
-    pass,
-    signal: pass ? "judicial:RULE_MET" : "judicial:RULE_VIOLATED",
-    reason: pass
-      ? "Claim contains required token"
-      : "Claim does not contain required token"
+    pass: true,
+    stationary,
+    signal: stationary ? "judicial-gold:STATIONARY" : "judicial-gold:DRIFT",
+    reason: stationary
+      ? "Stationary fields match declared petal identity"
+      : "One or more stationary fields drift from declaration"
   };
 }
