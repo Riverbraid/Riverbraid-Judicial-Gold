@@ -1,0 +1,29 @@
+{
+  "schema": "riverbraid.gold.protocol.steps",
+  "version": "1.0.0",
+  "repo": "Riverbraid-Judicial-Gold",
+  "ring": 1,
+  "petal": "Judicial-Gold",
+  "invariant": "RULE_ADHERENCE",
+  "canonical_input": {
+    "claim": "The river flows",
+    "required_token": "flows"
+  },
+  "expected_result": true,
+  "steps": [
+    "receive canonical input object",
+    "require claim and required_token to be strings",
+    "evaluate case-sensitive token containment",
+    "compare result to expected_result",
+    "emit deterministic verification output"
+  ],
+  "forbidden": [
+    "Date",
+    "Math.random",
+    "randomUUID",
+    "timestamps",
+    "absolute paths",
+    "environment dependent values",
+    "external lookups"
+  ]
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "riverbraid.gold.verify.output",
+  "version": "1.0.0",
+  "repo": "Riverbraid-Judicial-Gold",
+  "ring": 1,
+  "petal": "Judicial-Gold",
+  "invariant": "RULE_ADHERENCE",
+  "status": "VERIFIED",
+  "result": true,
+  "expected_result": true,
+  "canonical_signal": "judicial:RULE_MET",
+  "canonical_reason": "Claim contains required token"
+}
